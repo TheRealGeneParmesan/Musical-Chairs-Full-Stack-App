@@ -7,16 +7,36 @@
     <link rel='stylesheet' href='/css/style.css' />
   </head>
   <body>
-    <nav>
+    {{!-- <nav>
       <a href='/'>Home</a>
-      {{#if isLoggedIn}}
+      {{!-- {{#if isLoggedIn}}
         <button class='btn btn-logout'>Log Out</button>
       {{else}}
         <a href='/login'>login</a>
         <a href='/signup'>signup</a>
-      {{/if}}
-    </nav>
-    {{{body}}}
+      {{/if}} --}}
+    <h1>Musical Chairs</h1>
+    <p>A website designed to help you discover your music community by listening to other's favorite songs, artists, and albums and by posting your own favorites! </p>
+    <form class ="login-form">
+      <h2>Existing User? Sign in!</h2>
+      <label for="login-username">Username</label>
+      <input type="text" id="login-username" name="username">
+      <label for="login-password">Password</label>
+      <input type="text" id="login-password" name="password">
+      <button type="submit">Login</button>
+    </form>
+    <form class="signup-form">
+      <h2>New User? Sign Up!</h2>
+      <label for="signup-username">Username</label>
+      <input type="text" id="signup-username" name="username">
+      <label for="signup-password">Password</label>
+      <input for="text" id="signup-password" name="password">
+      <label for="confirm-password">Confirm Password</label>
+      <input type="text" id="confirm-password" name="confirm-password">
+      <button type="submit">Sign Up</button>
+    </form>
     <script src='/js/main.js'></script>
+    <script src='/js/login.js'></script>
+    <script src='/js/signup.js'></script>
   </body>
 </html>
