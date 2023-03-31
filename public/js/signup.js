@@ -2,8 +2,8 @@
 const handleSignupSubmit = async (event) => {
   event.preventDefault();
   try {
-    const username = document.querySelector('#username').value.trim();
-    const password = document.querySelector('#password').value.trim();
+    const username = document.querySelector('#signup-username').value.trim();
+    const password = document.querySelector('#signup-password').value.trim();
     const confirmPassword = document
       .querySelector('#confirm-password')
       .value.trim();
