@@ -1,12 +1,12 @@
-require('dotenv').config();
-const exphbs = require('express-handlebars');
-const express = require('express');
-const session = require('express-session');
-const path = require('path');
-const sequelize = require('./config/connection');
-const router = require('./controllers');
-const helpers = require('./util/helpers');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+require("dotenv").config();
+const exphbs = require("express-handlebars");
+const express = require("express");
+const session = require("express-session");
+const path = require("path");
+const sequelize = require("./config/connection");
+const router = require("./controllers");
+const helpers = require("./util/helpers");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -14,9 +14,9 @@ const hbs = exphbs.create({ helpers });
 
 // setup app middleware
 // app.use(sessionMiddleware);
-app.use(express.static(path.join(__dirname, 'public')));
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+app.use(express.static(path.join(__dirname, "public")));
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -28,13 +28,13 @@ const sess = {
     maxAge: 3600000,
     httpOnly: true,
     secure: false,
-    sameSite: 'strict',
+    sameSite: "strict",
   },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+  }),
 };
 
 app.use(session(sess));

@@ -2,23 +2,21 @@ const router = require("express").Router();
 const { User, Post } = require("../models");
 const withAuth = require("../util/withAuth");
 
-// Get all posts 
+// Get all posts
 
-router.get('/', withAuth, async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [
         {
           model: User,
-          attributes: ['username'],
+          attributes: ["username"],
         },
       ],
     });
 
-
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
-
 
     // Pass serialized data and session flag into template
     res.render("home", {
@@ -31,16 +29,15 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
+// Route to select specific post
 
-// Route to select specific post 
-
-router.get('/post/:id', async (req, res) => {
+router.get("/post/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
         {
           model: User,
-          attributes: ['username'],
+          attributes: ["username"],
         },
       ],
     });
@@ -57,60 +54,52 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-
 // creates the music route (addedLoggedIn = true to get it to display nav)
-router.get('/music', withAuth, async (req, res) => {
+router.get("/music", withAuth, async (req, res) => {
   const isLoggedIn = true;
-  res.render('music', { title: 'Music', isLoggedIn })
-
+  res.render("music", { title: "Music", isLoggedIn });
 });
 
-
 // get all post and join with user data
-router.get('/profile', withAuth, async (req, res) => {
+router.get("/profile", withAuth, async (req, res) => {
   try {
     const userHistory = await User.findOne({
       where: { id: req.session.userId },
       include: [
         {
-          model: Post
+          model: Post,
         },
       ],
     });
 
-
-
     // serialize data for template to read
     const posts = userHistory.Posts.map((post) => post.get({ plain: true }));
 
-
     // pass serialized data and session flag into template
-    res.render('profile', {
-      title: 'My Dashboard',
+    res.render("profile", {
+      title: "My Dashboard",
       isLoggedIn: req.session.isLoggedIn,
-      posts
+      posts,
     });
   } catch (err) {
-    res.status(500).json(err)
+    res.status(500).json(err);
   }
 });
 
-
-
 // Use withAuth middleware to prevent access to route
-router.get('/profile/:id', withAuth, async (req, res) => {
+router.get("/profile/:id", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.userId, {
-      attributes: { exclude: ['password'] },
+      attributes: { exclude: ["password"] },
       include: [{ model: Post }],
     });
 
     const user = userData.get({ plain: true });
 
-    res.render('profile', {
+    res.render("profile", {
       ...user,
-      isLoggedIn: true
+      isLoggedIn: true,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -130,5 +119,3 @@ router.get("/signup", (req, res) => {
 });
 
 module.exports = router;
-
-

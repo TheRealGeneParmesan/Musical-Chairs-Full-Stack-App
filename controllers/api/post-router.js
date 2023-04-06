@@ -1,7 +1,7 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-const { Post, User } = require('../../models');
-const withAuth = require('../../util/withAuth');
+const { Post, User } = require("../../models");
+const withAuth = require("../../util/withAuth");
 
 // Create a post
 router.post("/", withAuth, async (req, res) => {
@@ -12,7 +12,7 @@ router.post("/", withAuth, async (req, res) => {
       userId: req.session.userId,
       song_url: req.body.song_url,
       artist: req.body.artist,
-      album: req.body.album
+      album: req.body.album,
     });
     return res.status(200).json(postData);
   } catch (error) {
@@ -29,21 +29,18 @@ router.post("/profile", withAuth, async (req, res) => {
       userId: req.session.userId,
       song_url: req.body.song_url,
       artist: req.body.artist,
-      album: req.body.album
+      album: req.body.album,
     });
     return res.status(200).json(postData);
   } catch (error) {
     console.error(error);
     res.status(500).send("⛔ Uh oh! An unexpected error occurred.");
   }
-
 });
-
-
 
 // Get all posts
 
-router.get('/', withAuth, async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [
@@ -64,7 +61,6 @@ router.get('/', withAuth, async (req, res) => {
     res.status(500).send("⛔ Uh oh! An unexpected error occurred.");
   }
 });
-
 
 // Get an individual post
 
@@ -88,22 +84,23 @@ router.get("/:id", withAuth, async (req, res) => {
   }
 });
 
-
 // Update a post
-router.put('/:id', async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
-    const postData = await Post.update({
-      name: req.body.name,
-      description: req.body.description
-    }, {
-      where: {
-        id: req.params.id,
-        user_id: req.session.userId,
+    const postData = await Post.update(
+      {
+        name: req.body.name,
+        description: req.body.description,
       },
-
-    });
+      {
+        where: {
+          id: req.params.id,
+          user_id: req.session.userId,
+        },
+      }
+    );
     if (!postData) {
-      res.status(404).json({ message: 'No post found with this id!' });
+      res.status(404).json({ message: "No post found with this id!" });
       return;
     }
 
@@ -111,9 +108,7 @@ router.put('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-})
-
-
+});
 
 // Delete a post
 

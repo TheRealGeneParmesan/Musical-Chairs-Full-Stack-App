@@ -1,12 +1,12 @@
-const session = require('express-session');
-const sequelize = require('./connection');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const session = require("express-session");
+const sequelize = require("./connection");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 // Check for SECRET env var and throw an error if it isn't set.
 if (!process.env.SESSION_SECRET) {
   // add SECRET=<your session secret> to .env file in local development. Add
   // SECRET to the Heroku config for production.
-  throw new Error('SECRET environmental variable must be set.');
+  throw new Error("SECRET environmental variable must be set.");
 }
 
 // Configure session options
