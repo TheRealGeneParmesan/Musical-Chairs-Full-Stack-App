@@ -1,78 +1,61 @@
-# FullStack Boilerplate <!-- omit in toc -->
+# Musical Chairs Project #2
 
-This boilerplate may be used as a starting point for building a full-stack app with Handlebars, Express, and Sequelize/MySQL. This boilerplate if configured for easy deployment on Heroku with JawsDB MySQL add-on.
+## User Story:
 
-- [Setup](#setup)
-- [Development](#development)
-- [Sessions](#sessions)
-- [Authentication](#authentication)
-- [Templates](#templates)
-- [Code Style](#code-style)
-- [Deploy to Heroku](#deploy-to-heroku)
+```
+AS a lover of music,
+I WANT TO be able to share my favorite songs with others,
+SO THAT others can listen too.
+```
 
-## Setup
+## Acceptance Criteria
 
-1. Run `npm i`.
-2. You will need an existing MySQL database. **mysql -> source db/schema.sql**
-3. Create `.env` file with MySQL credentials for local development and a SECRET. Refer to [.env.EXAMPLE](./.env.EXAMPLE)
-4. Run `npm start` to start the app.
+```
+GIVEN a social media platform with the ability to post music and content
+WHEN I signup as a user
+THEN I am presented with a public feed of all songs posted by other users
+WHEN I click on the play button on a post
+THEN I am taken to another page with a media player that automatically plays a 30 second preview of the song
+WHEN I click "Music" on the navigation bar
+THEN I am presented with a search bar and form for me to post my own music
+WHEN I type in an artist or song in the search bar
+THEN I am presented with three songs that most closely match my search
+WHEN I am presented with the three song options
+THEN I can click the play, pause, or restart song buttons to help with my selection
+WHEN I click "Add to post" under the song of my choosing
+THEN I can see the title, song URL, artist, and album automatically populated in my form
+WHEN I fill out the "Content" portion
+THEN I can create a post
+WHEN I click "Create Post"
+THEN I am automatically taken to "My Profile" page that contains all posts I've made
+WHEN I click "Delete"
+THEN I am able to remove a post from the public feed and my profile
+```
 
-## Development
+## Functionality
 
-This boilerplate includes [nodemon](https://nodemon.io/). Run `npm run watch` to start the server in watch mode during development.
+Upon opening, the site presents a public feed of all users' posts and the option to play a song posted by another user.
+![HomePage](./images/HomePage.png)
 
-## Sessions
+If I would like to play a song posted by myself or another user, I am taken to a media player with a 30 second preview of the song.
+![MediaPlayer](./images/MediaPlayer.png)
 
-[express-session](https://www.npmjs.com/package/express-session) and [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) are used for session management. Configure cookies and sessions in [config/session.js](./config/session.js)
+If I would like to post a new song, I can click the Music tab at the top of the navigation bar. I am then presented with a search bar that allows you to search by artist or track. I can click "Add to post" once I have selected a song, and share my thoughts on the song by filling out the "Content" portion of the form.
+![CreatePost](./images/CreatePost.png)
 
-## Authentication
+Once I have created a post, I a,m taken to my profile where I can see my most recent posts and all past posts. I have the option to delete posts under my profile page.
+![MyProfile](./images/MyProfile.png)
 
-Passwords are hashed using [bcrypt](https://www.npmjs.com/package/bcrypt). Middleware for protected routes redirects to `/login`. This can be modified by updating [util/withAuth.js](./util/withAuth.js).
+## Resources
 
-## Templates
+Spotify Web API: https://developer.spotify.com/documentation/web-api
 
-[Handlebars.js](https://handlebarsjs.com/) and [express-handlebars](https://www.npmjs.com/package/express-handlebars) are used for rendering templates.
+Bootstrap: https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css
 
-You can add your own custom helper functions by exporting them from [util/helpers.js](./util/helpers.js).
+Google Fonts: https://fonts.google.com/
 
-## Code Style
+## Site
 
-[ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) are included for enforcing consistent code quality and format. The default configuration includes the ESLint recommended plugin, the Prettier plugin, plus a couple of additional rules. Modify [.eslintrc.js](./.eslintrc.json) to customize the rules.
+Deployed Site:
 
-## Deploy to Heroku
-
-### Prerequisites
-
-Sign up for an [Heroku](https://id.heroku.com/login) account and install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli).
-
-The app must be setup using Git for version control in order to deploy on Heroku
-following this guide. Be sure to initialize Git before proceeding if you did not
-initially create this project by using the template repo.
-
-### Create and Configure a Heroku App
-
-The code for this boilerplate is pre-configured to deploy to Heroku and connect to the JAWS DB add-on for MySQL. In order to deploy, you must provision the JAWS DB add-on.
-
-**IMPORTANT:** Payment info. must be provided in order to use the JawsDB MySQL
-add-on. You must provide a credit card to use the service. **With the exception that all of you must be using the student package**
-
-1. Create a Heroku app in the command line. `heroku create <optionally-provide an app name>`
-
-2. Provision the [JawsDB MySQL add-on](https://elements.heroku.com/addons/jawsdb) with the free pricing plan. `heroku addons:create jawsdb:kitefin`
-
-3. Add environmental variables to the heroku config. The boilerplate uses
-   `SECRET` to sign the session id cookie. Use a tool to generate a long
-   randomized string for this value. (e.g. `hsKVlvYcC5b#Fw1FS*qz`) Add `SECRET`
-   to config by running `heroku config:set SECRET=<your long random secret>`.
-
-4. Use the same command to add any other environmental variables required for
-   your app to function. (`heroku config:set <name>=<value>`)
-
-5. Deploy the app by running `git push heroku main`. (Use the command again to deploy updates.)
-
-6. Open your app in the browser with `heroku open`.
-
-### Seed JawsDB
-
-Running `heroku run npm run seed` will run the seed script in Heroku if your
-seeds are required for production.
+Github URL: https://github.com/TheRealGeneParmesan/Project-2
