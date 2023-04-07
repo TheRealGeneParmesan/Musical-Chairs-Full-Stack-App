@@ -6,7 +6,7 @@ Musical Chairs is a social media platform that allows users to post their favori
 
 ## Installation
 
-N/A
+You won't need to install anything for this project.
 
 ## Usage
 
