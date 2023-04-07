@@ -1,6 +1,13 @@
 * {
   font-family: "Merriweather", serif;
 }
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
 .btn {
   font-family: "Roboto", sans-serif;
 }

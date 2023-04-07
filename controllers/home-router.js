@@ -25,6 +25,7 @@ router.get("/", withAuth, async (req, res) => {
       posts,
     });
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });
