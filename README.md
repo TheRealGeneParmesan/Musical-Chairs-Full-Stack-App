@@ -43,6 +43,6 @@ Google Fonts: https://fonts.google.com/
 
 ## Site
 
-Deployed Site:
+Deployed Site: https://musical-chairs.herokuapp.com/login
 
 Github URL: https://github.com/TheRealGeneParmesan/Project-2
