@@ -2,11 +2,7 @@
 
 ## Description:
 
-Musical Chairs is a social media platform that allows users to post their favorite songs with content. Users can share their thoughts on the song in addition to providing a short sample of the track. 
-
-## Installation
-
-You won't need to install anything to run this application.
+Musical Chairs is a full stack application and social media platform that allows users to post their favorite songs with content. Users can share their thoughts on the song in addition to providing a short sample of the track. 
 
 ## Usage
 
